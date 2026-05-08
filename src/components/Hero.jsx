@@ -101,9 +101,9 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="hidden md:flex justify-center relative"
+            className="flex justify-center relative mt-12 md:mt-0 order-first md:order-last"
           >
-            <div className="w-80 h-80 relative">
+            <div className="w-64 h-64 md:w-80 md:h-80 relative">
               {/* Outer rotating ring */}
               <motion.div 
                 animate={{ rotate: 360 }}
@@ -129,25 +129,25 @@ export default function Hero() {
               <motion.div 
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-0 -left-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl p-3.5 rounded-full text-[#61DAFB] flex items-center justify-center z-20"
+                className="absolute top-0 -left-2 md:-left-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl p-2.5 md:p-3.5 rounded-full text-[#61DAFB] flex items-center justify-center z-20"
               >
-                <FaReact size={32} />
+                <FaReact className="w-6 h-6 md:w-8 md:h-8" />
               </motion.div>
               
               <motion.div 
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-10 -left-8 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl p-3.5 rounded-full text-[#339933] flex items-center justify-center z-20"
+                className="absolute bottom-6 md:bottom-10 -left-4 md:-left-8 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl p-2.5 md:p-3.5 rounded-full text-[#339933] flex items-center justify-center z-20"
               >
-                <FaNodeJs size={32} />
+                <FaNodeJs className="w-6 h-6 md:w-8 md:h-8" />
               </motion.div>
               
               <motion.div 
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute top-20 -right-8 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl p-3.5 rounded-full text-[#06B6D4] flex items-center justify-center z-20"
+                className="absolute top-16 md:top-20 -right-4 md:-right-8 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl p-2.5 md:p-3.5 rounded-full text-[#06B6D4] flex items-center justify-center z-20"
               >
-                <SiTailwindcss size={32} />
+                <SiTailwindcss className="w-6 h-6 md:w-8 md:h-8" />
               </motion.div>
             </div>
           </motion.div>
