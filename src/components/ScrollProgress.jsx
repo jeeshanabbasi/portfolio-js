@@ -2,7 +2,7 @@ import { motion, useScroll, useSpring } from 'framer-motion';
 
 export default function ScrollProgress() {
   const { scrollYProgress } = useScroll();
-  
+
   // Add a spring physics to make the bar movement smoother
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,

@@ -7,27 +7,44 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      e.target.reset();
-      
-      // Trigger Confetti
-      confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#06b6d4', '#3b82f6', '#a855f7']
+    const formData = new FormData(e.target);
+    formData.append("access_key", "5834c918-27d3-4fde-a08f-dc384243a230");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
       });
 
-      // Reset success message after 5 seconds
-      setTimeout(() => setIsSuccess(false), 5000);
-    }, 1500);
+      const data = await response.json();
+
+      if (data.success) {
+        setIsSubmitting(false);
+        setIsSuccess(true);
+        e.target.reset();
+        
+        // Trigger Confetti
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#06b6d4', '#3b82f6', '#a855f7']
+        });
+
+        // Reset success message after 5 seconds
+        setTimeout(() => setIsSuccess(false), 5000);
+      } else {
+        console.error("Error submitting form:", data.message);
+        setIsSubmitting(false);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -102,6 +119,7 @@ export default function Contact() {
                   <label htmlFor="name" className="text-sm font-medium text-slate-700 dark:text-slate-300">Your Name</label>
                   <input 
                     type="text" 
+                    name="name"
                     id="name" 
                     required
                     className="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
@@ -112,6 +130,7 @@ export default function Contact() {
                   <label htmlFor="email" className="text-sm font-medium text-slate-700 dark:text-slate-300">Your Email</label>
                   <input 
                     type="email" 
+                    name="email"
                     id="email" 
                     required
                     className="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
@@ -124,6 +143,7 @@ export default function Contact() {
                 <label htmlFor="subject" className="text-sm font-medium text-slate-700 dark:text-slate-300">Subject</label>
                 <input 
                   type="text" 
+                  name="subject"
                   id="subject" 
                   required
                   className="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
@@ -134,6 +154,7 @@ export default function Contact() {
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-medium text-slate-700 dark:text-slate-300">Message</label>
                 <textarea 
+                  name="message"
                   id="message" 
                   rows="5" 
                   required
