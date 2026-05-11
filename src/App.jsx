@@ -7,9 +7,9 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import ScrollToTop from './components/ScrollToTop';
-import ParticlesBackground from './components/ParticlesBackground';
 import Preloader from './components/Preloader';
 import ScrollProgress from './components/ScrollProgress';
+import BackgroundDesign from './components/BackgroundDesign';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
       <Navbar />
       
       <main>
-        <ParticlesBackground />
+        <BackgroundDesign />
         <Hero />
         <About />
         <Skills />
