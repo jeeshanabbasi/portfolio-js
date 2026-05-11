@@ -81,17 +81,17 @@ export default function Hero() {
             {/* Social Links */}
             <div className="flex items-center gap-5 mt-10">
               <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">Follow Me:</p>
-              <a href="https://github.com/jeeshanabbasi/" target="_blank" rel="noreferrer" className="text-slate-500 hover:text-cyan-600 dark:text-slate-400 dark:hover:text-cyan-400 transition-colors">
-                <FaGithub size={22} />
+              <a href="https://github.com/jeeshanabbasi/" target="_blank" rel="noreferrer" className="text-[#333] dark:text-white hover:scale-110 transition-transform">
+                <FaGithub size={24} />
               </a>
-              <a href="https://www.linkedin.com/in/jeeshan-abbasi-67aa7638a/" target="_blank" rel="noreferrer" className="text-slate-500 hover:text-cyan-600 dark:text-slate-400 dark:hover:text-cyan-400 transition-colors">
-                <FaLinkedin size={22} />
+              <a href="https://www.linkedin.com/in/jeeshan-abbasi-67aa7638a/" target="_blank" rel="noreferrer" className="text-[#0A66C2] hover:scale-110 transition-transform">
+                <FaLinkedin size={24} />
               </a>
-              <a href="http://instagram.com/jeeshan_abbasi18" target="_blank" rel="noreferrer" className="text-slate-500 hover:text-cyan-600 dark:text-slate-400 dark:hover:text-cyan-400 transition-colors">
-                <FaInstagram size={22} />
+              <a href="http://instagram.com/jeeshan_abbasi18" target="_blank" rel="noreferrer" className="text-[#E4405F] hover:scale-110 transition-transform">
+                <FaInstagram size={24} />
               </a>
-              <a href="mailto:jeeshanabbasi055@gmail.com" className="text-slate-500 hover:text-cyan-600 dark:text-slate-400 dark:hover:text-cyan-400 transition-colors">
-                <Mail size={22} />
+              <a href="mailto:jeeshanabbasi055@gmail.com" className="text-[#EA4335] hover:scale-110 transition-transform">
+                <Mail size={24} />
               </a>
             </div>
           </motion.div>

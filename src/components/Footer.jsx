@@ -23,9 +23,9 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { icon: <FaGithub size={20} />, href: 'https://github.com/jeeshanabbasi/', label: 'GitHub', hoverColor: 'hover:text-white hover:bg-slate-800 dark:hover:bg-white dark:hover:text-slate-900' },
-    { icon: <FaLinkedin size={20} />, href: 'https://www.linkedin.com/in/jeeshan-abbasi-67aa7638a/', label: 'LinkedIn', hoverColor: 'hover:text-white hover:bg-[#0A66C2]' },
-    { icon: <FaInstagram size={20} />, href: 'http://instagram.com/jeeshan_abbasi18', label: 'Instagram', hoverColor: 'hover:text-white hover:bg-gradient-to-br hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7]' },
+    { icon: <FaGithub size={20} />, href: 'https://github.com/jeeshanabbasi/', label: 'GitHub', colorClass: 'text-[#333] dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800' },
+    { icon: <FaLinkedin size={20} />, href: 'https://www.linkedin.com/in/jeeshan-abbasi-67aa7638a/', label: 'LinkedIn', colorClass: 'text-[#0A66C2] hover:bg-blue-50 dark:hover:bg-blue-900/20' },
+    { icon: <FaInstagram size={20} />, href: 'http://instagram.com/jeeshan_abbasi18', label: 'Instagram', colorClass: 'text-[#E4405F] hover:bg-pink-50 dark:hover:bg-pink-900/20' },
   ];
 
   return (
@@ -176,7 +176,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={social.label}
-                  className={`p-3 rounded-xl bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 shadow-sm text-slate-500 dark:text-slate-400 transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${social.hoverColor}`}
+                  className={`p-3 rounded-xl bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${social.colorClass}`}
                 >
                   {social.icon}
                 </a>
