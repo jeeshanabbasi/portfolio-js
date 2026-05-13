@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Mail } from 'lucide-react';
+import { ArrowRight, Mail, Download } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaInstagram, FaReact, FaNodeJs } from 'react-icons/fa';
 import { SiTailwindcss } from 'react-icons/si';
 import { Link } from 'react-scroll';
@@ -76,6 +76,12 @@ export default function Hero() {
                   Contact Me
                 </MagneticButton>
               </Link>
+              
+              <a href="/resume.pdf" download>
+                <MagneticButton className="px-6 py-3 rounded-full bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-medium hover:bg-emerald-500 hover:text-white dark:hover:bg-emerald-500 dark:hover:text-white transition-all flex items-center gap-2 shadow-sm">
+                  <Download size={18} /> Download CV
+                </MagneticButton>
+              </a>
             </div>
             
             {/* Social Links */}
@@ -87,8 +93,10 @@ export default function Hero() {
               <a href="https://www.linkedin.com/in/jeeshan-abbasi-67aa7638a/" target="_blank" rel="noreferrer" className="text-[#0A66C2] hover:scale-110 transition-transform">
                 <FaLinkedin size={24} />
               </a>
-              <a href="http://instagram.com/jeeshan_abbasi18" target="_blank" rel="noreferrer" className="text-[#E4405F] hover:scale-110 transition-transform">
-                <FaInstagram size={24} />
+              <a href="http://instagram.com/jeeshan_abbasi18" target="_blank" rel="noreferrer" className="hover:scale-110 transition-transform">
+                <div className="w-[26px] h-[26px] rounded-[7px] flex items-center justify-center" style={{ background: 'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)' }}>
+                  <FaInstagram size={18} className="text-white" />
+                </div>
               </a>
               <a href="mailto:jeeshanabbasi055@gmail.com" className="text-[#EA4335] hover:scale-110 transition-transform">
                 <Mail size={24} />

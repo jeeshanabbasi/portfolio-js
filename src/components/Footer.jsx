@@ -25,7 +25,7 @@ export default function Footer() {
   const socialLinks = [
     { icon: <FaGithub size={20} />, href: 'https://github.com/jeeshanabbasi/', label: 'GitHub', colorClass: 'text-[#333] dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800' },
     { icon: <FaLinkedin size={20} />, href: 'https://www.linkedin.com/in/jeeshan-abbasi-67aa7638a/', label: 'LinkedIn', colorClass: 'text-[#0A66C2] hover:bg-blue-50 dark:hover:bg-blue-900/20' },
-    { icon: <FaInstagram size={20} />, href: 'http://instagram.com/jeeshan_abbasi18', label: 'Instagram', colorClass: 'text-[#E4405F] hover:bg-pink-50 dark:hover:bg-pink-900/20' },
+    { icon: <div className="w-[22px] h-[22px] rounded-[5px] flex items-center justify-center" style={{ background: 'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)' }}><FaInstagram size={14} className="text-white" /></div>, href: 'http://instagram.com/jeeshan_abbasi18', label: 'Instagram', colorClass: 'hover:bg-pink-50 dark:hover:bg-pink-900/20' },
   ];
 
   return (

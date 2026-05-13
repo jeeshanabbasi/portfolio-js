@@ -15,7 +15,7 @@ const projects = [
   {
     title: 'Task Manager',
     description: 'A productivity application designed to help users organize their daily workflows. Includes drag-and-drop task management, category filtering, and progress tracking with a modern glassmorphism interface.',
-    tech: ['React', 'Framer Motion', 'Node.js', 'MySQL'],
+    tech: ['React', 'Framer Motion', 'Node.js', 'MongoDB'],
     liveLink: 'https://frontend-task-nine-lake.vercel.app/',
     githubLink: 'https://github.com/jeeshanabbasi',
     image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop'
