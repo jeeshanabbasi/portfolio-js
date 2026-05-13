@@ -9,7 +9,7 @@ const projects = [
     description: 'A comprehensive platform for booking services. Includes user authentication, provider management panel, cart, and checkout functionalities. Features a robust admin dashboard with dark mode UI.',
     tech: ['React', 'Tailwind CSS', 'Node.js', 'Express', 'MongoDB'],
     liveLink: '#',
-    githubLink: '#',
+    githubLink: 'https://github.com/jeeshanabbasi',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop'
   },
   {
@@ -17,7 +17,7 @@ const projects = [
     description: 'A productivity application designed to help users organize their daily workflows. Includes drag-and-drop task management, category filtering, and progress tracking with a modern glassmorphism interface.',
     tech: ['React', 'Framer Motion', 'Node.js', 'MySQL'],
     liveLink: 'https://frontend-task-nine-lake.vercel.app/',
-    githubLink: '#',
+    githubLink: 'https://github.com/jeeshanabbasi',
     image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop'
   },
   {
@@ -25,7 +25,7 @@ const projects = [
     description: 'An elegant e-commerce front-end for a printing business. Showcases rotating hero banners, product catalogs, and smooth scroll animations. Fully responsive for all devices.',
     tech: ['React', 'Tailwind CSS', 'Vite'],
     liveLink: '#',
-    githubLink: '#',
+    githubLink: 'https://github.com/jeeshanabbasi',
     image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop'
   }
 ];
