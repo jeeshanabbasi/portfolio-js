@@ -1,66 +1,126 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useState, useCallback } from 'react';
 
 export default function CustomCursor() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [pos, setPos] = useState({ x: -100, y: -100 });
+  const [trail, setTrail] = useState({ x: -100, y: -100 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const updateMousePosition = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    const handleMouseOver = (e) => {
-      if (
-        e.target.tagName.toLowerCase() === 'a' ||
-        e.target.tagName.toLowerCase() === 'button' ||
-        e.target.closest('a') ||
-        e.target.closest('button') ||
-        e.target.classList.contains('cursor-pointer')
-      ) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
-    };
-
-    window.addEventListener('mousemove', updateMousePosition);
-    window.addEventListener('mouseover', handleMouseOver);
-
-    return () => {
-      window.removeEventListener('mousemove', updateMousePosition);
-      window.removeEventListener('mouseover', handleMouseOver);
-    };
+    // Don't show on touch/mobile
+    setIsMobile(window.matchMedia('(pointer: coarse)').matches);
   }, []);
 
-  // Don't render on mobile devices
-  if (typeof window !== 'undefined' && window.innerWidth < 768) {
-    return null;
-  }
+  const updatePos = useCallback((e) => {
+    setPos({ x: e.clientX, y: e.clientY });
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
+
+    // Smooth trail using requestAnimationFrame
+    let animFrame;
+    let currentTrail = { x: -100, y: -100 };
+    let targetPos = { x: -100, y: -100 };
+
+    const onMove = (e) => {
+      targetPos = { x: e.clientX, y: e.clientY };
+      updatePos(e);
+    };
+
+    const animate = () => {
+      currentTrail.x += (targetPos.x - currentTrail.x) * 0.12;
+      currentTrail.y += (targetPos.y - currentTrail.y) * 0.12;
+      setTrail({ x: currentTrail.x, y: currentTrail.y });
+      animFrame = requestAnimationFrame(animate);
+    };
+
+    const onOver = (e) => {
+      const el = e.target;
+      const isInteractive =
+        el.tagName === 'A' ||
+        el.tagName === 'BUTTON' ||
+        el.closest('a') ||
+        el.closest('button') ||
+        el.classList.contains('cursor-pointer') ||
+        el.tagName === 'INPUT' ||
+        el.tagName === 'TEXTAREA';
+      setIsHovering(!!isInteractive);
+    };
+
+    const onDown = () => setIsClicking(true);
+    const onUp = () => setIsClicking(false);
+
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseover', onOver);
+    window.addEventListener('mousedown', onDown);
+    window.addEventListener('mouseup', onUp);
+    animFrame = requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseover', onOver);
+      window.removeEventListener('mousedown', onDown);
+      window.removeEventListener('mouseup', onUp);
+      cancelAnimationFrame(animFrame);
+    };
+  }, [isMobile, updatePos]);
+
+  if (isMobile) return null;
 
   return (
     <>
-      {/* Small dot */}
-      <motion.div
-        className="fixed top-0 left-0 w-2.5 h-2.5 bg-slate-900 dark:bg-cyan-400 rounded-full pointer-events-none z-[100]"
-        animate={{
-          x: mousePosition.x - 5,
-          y: mousePosition.y - 5,
-          scale: isHovering ? 0 : 1,
+      {/* Small sharp dot — follows cursor exactly */}
+      <div
+        className="fixed pointer-events-none z-[9999]"
+        style={{
+          left: pos.x,
+          top: pos.y,
+          transform: 'translate(-50%, -50%)',
+          transition: 'transform 0.08s ease',
         }}
-        transition={{ type: 'tween', ease: 'backOut', duration: 0.1 }}
-      />
-      
-      {/* Outer ring */}
-      <motion.div
-        className="fixed top-0 left-0 w-9 h-9 border-2 border-slate-800 dark:border-cyan-500/50 rounded-full pointer-events-none z-[100] flex items-center justify-center bg-slate-800/5 dark:bg-cyan-500/10"
-        animate={{
-          x: mousePosition.x - 18,
-          y: mousePosition.y - 18,
-          scale: isHovering ? 1.5 : 1,
+      >
+        <div
+          style={{
+            width: isClicking ? '6px' : isHovering ? '0px' : '8px',
+            height: isClicking ? '6px' : isHovering ? '0px' : '8px',
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #06b6d4, #3b82f6)',
+            boxShadow: '0 0 8px rgba(6,182,212,0.8)',
+            transition: 'width 0.2s ease, height 0.2s ease, opacity 0.2s ease',
+            opacity: isHovering ? 0 : 1,
+          }}
+        />
+      </div>
+
+      {/* Outer trailing ring — lags behind smoothly */}
+      <div
+        className="fixed pointer-events-none z-[9998]"
+        style={{
+          left: trail.x,
+          top: trail.y,
+          transform: 'translate(-50%, -50%)',
         }}
-        transition={{ type: 'tween', ease: 'easeOut', duration: 0.2 }}
-      />
+      >
+        <div
+          style={{
+            width: isClicking ? '28px' : isHovering ? '44px' : '36px',
+            height: isClicking ? '28px' : isHovering ? '44px' : '36px',
+            borderRadius: '50%',
+            border: isHovering
+              ? '2px solid rgba(6,182,212,0.9)'
+              : '1.5px solid rgba(6,182,212,0.5)',
+            background: isHovering
+              ? 'rgba(6,182,212,0.08)'
+              : 'transparent',
+            boxShadow: isHovering
+              ? '0 0 16px rgba(6,182,212,0.25), inset 0 0 8px rgba(6,182,212,0.05)'
+              : '0 0 6px rgba(6,182,212,0.15)',
+            transition: 'width 0.25s ease, height 0.25s ease, border 0.25s ease, background 0.25s ease, box-shadow 0.25s ease',
+          }}
+        />
+      </div>
     </>
   );
 }

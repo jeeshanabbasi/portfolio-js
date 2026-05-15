@@ -11,7 +11,12 @@
     scroll-behavior: smooth;
   }
 }
-
+/* Hide default cursor on desktop — custom cursor active */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
 
 
 @layer utilities {
