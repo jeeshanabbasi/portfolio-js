@@ -32,11 +32,7 @@ function App() {
         <Skills />
         <Experience />
         <Projects />
-        <section className="py-12 relative z-10">
-          <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12">
-            <GithubStats />
-          </div>
-        </section>
+        <GithubStats />
         <Contact />
       </main>
 

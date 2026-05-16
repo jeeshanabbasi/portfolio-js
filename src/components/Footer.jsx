@@ -38,10 +38,10 @@ export default function Footer() {
       {/* Decorative top line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
 
-      <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 relative z-10">
+      <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
         
         {/* Main Footer Content */}
-        <div className="pt-16 pb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+        <div className="pt-12 pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8">
           
           {/* Brand Column */}
           <div className="lg:col-span-1">
@@ -140,7 +140,7 @@ export default function Footer() {
                     <div className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-white/5 group-hover:border-cyan-300 dark:group-hover:border-cyan-500/30 transition-colors">
                       <Mail size={14} />
                     </div>
-                    jeeshanabbasi055@gmail.com
+                    <span className="break-all">jeeshanabbasi055@gmail.com</span>
                   </a>
                 </li>
                 <li>

@@ -40,7 +40,7 @@ export default function Projects() {
           viewport={{ once: true }}
           className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+          <h2 className="text-2xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
             Featured <span className="text-cyan-400">Projects</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full" />
@@ -90,13 +90,13 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {/* Buttons */}
-                <div className="flex items-center gap-3">
+                {/* Buttons — vertical on mobile, horizontal on sm+ */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
                   <a
                     href={project.liveLink}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-cyan-500 text-white font-semibold text-sm hover:bg-cyan-600 transition-colors"
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-full bg-cyan-500 text-white font-semibold text-sm hover:bg-cyan-600 transition-colors"
                   >
                     <ExternalLink size={15} /> Live Demo
                   </a>
@@ -104,7 +104,7 @@ export default function Projects() {
                     href={project.githubLink}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 text-slate-700 dark:text-white font-medium text-sm hover:bg-slate-50 dark:hover:bg-white/10 transition-colors"
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 text-slate-700 dark:text-white font-medium text-sm hover:bg-slate-50 dark:hover:bg-white/10 transition-colors"
                   >
                     <FaGithub size={15} /> GitHub
                   </a>

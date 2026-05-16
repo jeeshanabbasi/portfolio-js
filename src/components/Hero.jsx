@@ -51,16 +51,16 @@ export default function Hero() {
                 Welcome to my portfolio
               </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-white mb-3 md:mb-4 tracking-tight leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-3 md:mb-4 tracking-tight leading-tight">
                 Hi, I'm <br />
                 <span className="text-gradient">Jeeshan</span>
               </h1>
 
-              <h2 className="text-base sm:text-xl md:text-2xl lg:text-3xl text-slate-700 dark:text-slate-300 font-medium mb-4 md:mb-6 min-h-[28px] md:min-h-[40px]">
+              <h2 className="text-sm sm:text-base md:text-xl lg:text-2xl text-slate-700 dark:text-slate-300 font-medium mb-4 md:mb-6 min-h-[24px] md:min-h-[32px]">
                 {text}<span className="animate-pulse text-cyan-400">|</span>
               </h2>
 
-              <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base md:text-lg max-w-lg mb-6 md:mb-8 leading-relaxed mx-auto md:mx-0">
+              <p className="text-slate-600 dark:text-slate-400 text-sm md:text-base max-w-md mb-6 md:mb-8 leading-relaxed mx-auto md:mx-0">
                 I build modern, scalable, and visually stunning web applications. Let's turn your ideas into digital reality with clean code and creative design.
               </p>
 

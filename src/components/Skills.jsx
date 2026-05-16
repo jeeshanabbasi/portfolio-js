@@ -94,7 +94,7 @@ export default function Skills() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+          <h2 className="text-2xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
             Technical <span className="text-cyan-400">Skills</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full"></div>

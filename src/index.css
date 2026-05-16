@@ -9,6 +9,12 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  /* Prevent sections from hiding behind fixed navbar on scroll */
+  section[id] {
+    scroll-margin-top: 80px;
   }
 }
 /* Hide default cursor on desktop — custom cursor active */
