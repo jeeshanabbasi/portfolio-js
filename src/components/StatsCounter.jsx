@@ -35,13 +35,13 @@ function Counter({ value, suffix, duration = 2000 }) {
 
 export default function StatsCounter() {
   return (
-    <section className="py-16 relative">
-      <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12">
+    <section className="py-10 md:py-16 relative">
+      <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6"
+          className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6"
         >
           {stats.map((stat, i) => (
             <motion.div
@@ -50,12 +50,12 @@ export default function StatsCounter() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col items-center text-center shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 rounded-2xl p-4 md:p-6 flex flex-col items-center text-center shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
             >
               <div className={`${stat.bg} ${stat.color} p-3 rounded-xl mb-4 group-hover:scale-110 transition-transform`}>
                 {stat.icon}
               </div>
-              <div className={`text-4xl font-bold ${stat.color} mb-1`}>
+              <div className={`text-3xl md:text-4xl font-bold ${stat.color} mb-1`}>
                 <Counter value={stat.value} suffix={stat.suffix} />
               </div>
               <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">{stat.label}</p>

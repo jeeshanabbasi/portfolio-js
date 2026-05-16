@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
-import Tilt from 'react-parallax-tilt';
 
 const projects = [
   {
@@ -32,48 +31,107 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 relative">
-      <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 relative z-10">
-        
-        <motion.div 
+    <section id="projects" className="py-12 md:py-20 relative">
+      <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
             Featured <span className="text-cyan-400">Projects</span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full"></div>
+          <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full" />
         </motion.div>
 
-        <div className="space-y-20">
+        {/* ── Mobile: vertical card grid ── Desktop: alternating layout ── */}
+
+        {/* Mobile view — simple vertical cards */}
+        <div className="flex flex-col gap-8 md:hidden">
           {projects.map((project, idx) => (
-            <motion.div 
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 rounded-2xl overflow-hidden shadow-md"
+            >
+              {/* Image */}
+              <div className="relative aspect-video overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+                <span className="absolute bottom-3 left-3 text-xs font-semibold text-cyan-300 uppercase tracking-wider">
+                  Featured Project
+                </span>
+              </div>
+
+              {/* Content */}
+              <div className="p-5">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                  {project.description}
+                </p>
+
+                {/* Tech tags */}
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {project.tech.map((tech, i) => (
+                    <span key={i} className="text-xs font-medium px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Buttons */}
+                <div className="flex items-center gap-3">
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-cyan-500 text-white font-semibold text-sm hover:bg-cyan-600 transition-colors"
+                  >
+                    <ExternalLink size={15} /> Live Demo
+                  </a>
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 text-slate-700 dark:text-white font-medium text-sm hover:bg-slate-50 dark:hover:bg-white/10 transition-colors"
+                  >
+                    <FaGithub size={15} /> GitHub
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Desktop view — alternating horizontal layout (no tilt/gyro) */}
+        <div className="hidden md:flex flex-col gap-16 lg:gap-20">
+          {projects.map((project, idx) => (
+            <motion.div
               key={idx}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: '-100px' }}
               transition={{ duration: 0.6 }}
-              className={`flex flex-col md:flex-row gap-10 items-center ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+              className={`flex flex-row gap-10 items-center ${idx % 2 !== 0 ? 'flex-row-reverse' : ''}`}
             >
-              
-              <div className="w-full md:w-1/2 group relative">
-                <Tilt 
-                  tiltMaxAngleX={5} 
-                  tiltMaxAngleY={5} 
-                  scale={1.02}
-                  transitionSpeed={2500}
-                  className="w-full"
-                >
-                  <div className="absolute inset-0 bg-cyan-500/10 dark:bg-cyan-500/20 blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                <div className="relative rounded-2xl overflow-hidden bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-white/10 aspect-video shadow-lg">
-                  {/* Base overlay for dark mode */}
-                  <div className="absolute inset-0 bg-slate-900/10 dark:bg-slate-900/40 transition-colors duration-500 z-10"></div>
-                  
-                  {/* Hover Overlay with Button */}
+              {/* Image side */}
+              <div className="w-1/2 group relative">
+                <div className="absolute inset-0 bg-cyan-500/10 dark:bg-cyan-500/20 blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="relative rounded-2xl overflow-hidden bg-white/80 dark:bg-slate-800/50 border border-slate-200 dark:border-white/10 aspect-video shadow-lg">
+                  <div className="absolute inset-0 bg-slate-900/10 dark:bg-slate-900/40 transition-colors duration-500 z-10" />
                   <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-all duration-500 z-20 flex items-center justify-center backdrop-blur-[2px]">
-                    <a 
+                    <a
                       href={project.liveLink}
                       target="_blank"
                       rel="noreferrer"
@@ -82,50 +140,53 @@ export default function Projects() {
                       <ExternalLink size={18} /> View Live Project
                     </a>
                   </div>
-
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
+                  <img
+                    src={project.image}
+                    alt={project.title}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   />
                 </div>
-                </Tilt>
               </div>
 
-              {/* Content Side */}
-              <div className="w-full md:w-1/2 flex flex-col justify-center">
+              {/* Content side */}
+              <div className="w-1/2 flex flex-col justify-center">
                 <div className="mb-2 text-cyan-400 text-sm font-semibold tracking-wider uppercase">
                   Featured Project
                 </div>
-                <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
+                <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white mb-4">
                   {project.title}
                 </h3>
-                
-                <div className="bg-white/80 dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-white/5 shadow-sm p-6 rounded-xl mb-6 relative z-20">
+                <div className="bg-white/80 dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-white/5 shadow-sm p-5 rounded-xl mb-6">
                   <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
                     {project.description}
                   </p>
                 </div>
-
                 <div className="flex flex-wrap gap-3 mb-8">
                   {project.tech.map((tech, i) => (
                     <span key={i} className="text-sm font-medium text-slate-600 dark:text-slate-400">
-                      {tech}
-                      {i < project.tech.length - 1 && <span className="mx-2 text-slate-600">/</span>}
+                      {tech}{i < project.tech.length - 1 && <span className="mx-2 text-slate-400">/</span>}
                     </span>
                   ))}
                 </div>
-
                 <div className="flex items-center gap-4">
-                  <a href={project.liveLink} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-500 text-white dark:text-slate-900 font-semibold hover:bg-cyan-600 dark:hover:bg-cyan-400 transition-colors shadow-sm">
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-500 text-white font-semibold hover:bg-cyan-600 transition-colors shadow-sm"
+                  >
                     <ExternalLink size={18} /> Live Demo
                   </a>
-                  <a href={project.githubLink} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/10 text-slate-700 dark:text-white font-medium transition-colors shadow-sm">
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/10 text-slate-700 dark:text-white font-medium transition-colors shadow-sm"
+                  >
                     <FaGithub size={18} /> Source Code
                   </a>
                 </div>
               </div>
-
             </motion.div>
           ))}
         </div>

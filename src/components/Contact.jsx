@@ -48,8 +48,8 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 relative">
-      <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 relative z-10">
+    <section id="contact" className="py-12 md:py-20 relative">
+      <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
         
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -66,7 +66,7 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
           
           {/* Contact Info */}
           <motion.div 

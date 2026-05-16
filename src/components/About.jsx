@@ -18,7 +18,7 @@ export default function About() {
 
   return (
     <section id="about" className="py-12 relative">
-      <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 relative z-10">
+      <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
         
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -32,7 +32,7 @@ export default function About() {
           <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full"></div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           
           <motion.div
             initial={{ opacity: 0, x: -30 }}

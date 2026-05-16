@@ -17,7 +17,7 @@ import BackgroundDesign from './components/BackgroundDesign';
 
 function App() {
   return (
-    <div className="relative font-sans text-slate-900 dark:text-slate-200 transition-colors duration-300">
+    <div className="relative font-sans text-slate-900 dark:text-slate-200 transition-colors duration-300 overflow-x-hidden">
       <Preloader />
       <ScrollProgress />
       <CustomCursor />

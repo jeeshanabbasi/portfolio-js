@@ -47,8 +47,8 @@ const colorMap = {
 
 export default function Education() {
   return (
-    <section id="education" className="py-20 relative">
-      <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 relative z-10">
+    <section id="education" className="py-12 md:py-20 relative">
+      <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
 
         {/* Heading */}
         <motion.div
