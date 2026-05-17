@@ -7,7 +7,6 @@ import { useTheme } from '../context/ThemeContext';
 const navLinks = [
   { name: 'Home', to: 'home' },
   { name: 'About', to: 'about' },
-  { name: 'Education', to: 'education' },
   { name: 'Skills', to: 'skills' },
   { name: 'Projects', to: 'projects' },
   { name: 'Contact', to: 'contact' },
@@ -16,18 +15,31 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      // Active section detection
+      const sections = navLinks.map(l => document.getElementById(l.to));
+      const scrollPos = window.scrollY + 100;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section && section.offsetTop <= scrollPos) {
+          setActiveSection(navLinks[i].to);
+          break;
+        }
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    // Changed md: → lg: so hamburger shows on tablet (768px) too
     <header className={`fixed w-full z-50 transition-all duration-500 flex justify-center ${scrolled ? 'top-4 px-4' : 'top-0'}`}>
       <nav
         className={`w-full transition-all duration-500 relative ${
@@ -45,46 +57,61 @@ export default function Navbar() {
             Jeeshan<span className="text-cyan-400">.</span>
           </motion.div>
 
-          {/* Desktop Nav — only shows on lg+ (1024px+) */}
-          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+          {/* Desktop Nav — lg+ only */}
+          <div className="hidden lg:flex items-center space-x-1 xl:space-x-2">
             {navLinks.map((link, index) => (
               <motion.div
                 key={link.name}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.08 }}
+                className="relative"
               >
                 <Link
                   to={link.to}
                   spy={true}
                   smooth={true}
-                  offset={-70}
+                  offset={-80}
                   duration={500}
-                  className="text-slate-600 dark:text-slate-300 hover:text-cyan-500 dark:hover:text-cyan-400 text-sm font-medium transition-colors cursor-pointer whitespace-nowrap"
+                  onSetActive={() => setActiveSection(link.to)}
+                  className={`relative px-3 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer block ${
+                    activeSection === link.to
+                      ? 'text-cyan-600 dark:text-cyan-400'
+                      : 'text-slate-600 dark:text-slate-300 hover:text-cyan-500 dark:hover:text-cyan-400'
+                  }`}
                 >
+                  {/* Active underline indicator */}
+                  {activeSection === link.to && (
+                    <motion.span
+                      layoutId="navActive"
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-cyan-500"
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  )}
                   {link.name}
                 </Link>
               </motion.div>
             ))}
+
             <motion.a
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.4 }}
               href="#contact"
-              className="px-4 py-2 rounded-full bg-cyan-50 text-cyan-600 border border-cyan-200 hover:bg-cyan-500 hover:text-white dark:bg-cyan-500/10 dark:text-cyan-400 dark:border-cyan-500/20 dark:hover:bg-cyan-500 dark:hover:text-slate-900 transition-all font-medium text-sm whitespace-nowrap"
+              className="ml-3 px-4 py-2 rounded-full bg-cyan-50 text-cyan-600 border border-cyan-200 hover:bg-cyan-500 hover:text-white dark:bg-cyan-500/10 dark:text-cyan-400 dark:border-cyan-500/20 dark:hover:bg-cyan-500 dark:hover:text-slate-900 transition-all font-medium text-sm whitespace-nowrap"
             >
               Hire Me
             </motion.a>
 
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex-shrink-0"
+              className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex-shrink-0 ml-1"
             >
               {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
           </div>
 
-          {/* Mobile / Tablet Toggle — shows on < lg */}
+          {/* Mobile/Tablet Toggle */}
           <div className="lg:hidden flex items-center gap-3">
             <button
               onClick={toggleTheme}
@@ -101,27 +128,31 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile / Tablet Dropdown Menu */}
+        {/* Mobile Dropdown */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              initial={{ opacity: 0, y: -10, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              exit={{ opacity: 0, y: -10, scale: 0.97 }}
               transition={{ duration: 0.2 }}
               className={`lg:hidden absolute left-0 right-0 w-full bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-white/5 overflow-hidden shadow-xl backdrop-blur-xl ${scrolled ? 'top-full mt-4 rounded-3xl' : 'top-full mt-2 rounded-2xl'}`}
             >
-              <div className="flex flex-col px-6 py-6 space-y-4 text-center">
+              <div className="flex flex-col px-6 py-6 space-y-1 text-center">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     to={link.to}
                     spy={true}
                     smooth={true}
-                    offset={-70}
+                    offset={-80}
                     duration={500}
                     onClick={() => setIsOpen(false)}
-                    className="text-slate-600 dark:text-slate-300 hover:text-cyan-500 dark:hover:text-cyan-400 text-lg font-semibold transition-colors cursor-pointer block py-1"
+                    className={`text-lg font-semibold transition-colors cursor-pointer block py-2 rounded-xl ${
+                      activeSection === link.to
+                        ? 'text-cyan-500 bg-cyan-50 dark:bg-cyan-500/10'
+                        : 'text-slate-600 dark:text-slate-300 hover:text-cyan-500 dark:hover:text-cyan-400'
+                    }`}
                   >
                     {link.name}
                   </Link>
@@ -129,7 +160,7 @@ export default function Navbar() {
                 <a
                   href="#contact"
                   onClick={() => setIsOpen(false)}
-                  className="mt-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold text-sm hover:opacity-90 transition-all"
+                  className="mt-3 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold text-sm hover:opacity-90 transition-all"
                 >
                   Hire Me
                 </a>

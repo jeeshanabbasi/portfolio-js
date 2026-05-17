@@ -4,7 +4,6 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
-import Education from './components/Education';
 import StatsCounter from './components/StatsCounter';
 import GithubStats from './components/GithubStats';
 import Contact from './components/Contact';
@@ -14,6 +13,7 @@ import CustomCursor from './components/CustomCursor';
 import Preloader from './components/Preloader';
 import ScrollProgress from './components/ScrollProgress';
 import BackgroundDesign from './components/BackgroundDesign';
+import WhatsAppButton from './components/WhatsAppButton';
 
 function App() {
   return (
@@ -28,7 +28,6 @@ function App() {
         <Hero />
         <StatsCounter />
         <About />
-        <Education />
         <Skills />
         <Experience />
         <Projects />
@@ -38,6 +37,7 @@ function App() {
 
       <Footer />
       <ScrollToTop />
+      <WhatsAppButton />
     </div>
   );
 }
