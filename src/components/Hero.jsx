@@ -78,7 +78,7 @@ export default function Hero() {
                   </MagneticButton>
                 </Link>
 
-                <a href="/resume.pdf" download>
+                <a href="/resume.html" target="_blank" rel="noreferrer">
                   <MagneticButton className="px-5 py-2.5 rounded-full bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-medium hover:bg-emerald-500 hover:text-white transition-all flex items-center gap-2 shadow-sm text-sm">
                     <Download size={15} /> Download CV
                   </MagneticButton>
