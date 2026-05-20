@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -14,14 +15,17 @@ import Preloader from './components/Preloader';
 import ScrollProgress from './components/ScrollProgress';
 import BackgroundDesign from './components/BackgroundDesign';
 import WhatsAppButton from './components/WhatsAppButton';
+import AIChatbot from './components/AIChatbot';
 
 function App() {
+  const [chatOpen, setChatOpen] = useState(false);
+
   return (
     <div className="relative font-sans text-slate-900 dark:text-slate-200 transition-colors duration-300 overflow-x-hidden">
       <Preloader />
       <ScrollProgress />
       <CustomCursor />
-      <Navbar />
+      <Navbar onChatOpen={() => setChatOpen(true)} />
       
       <main>
         <BackgroundDesign />
@@ -38,9 +42,11 @@ function App() {
       <Footer />
       <ScrollToTop />
       <WhatsAppButton />
+      <AIChatbot isOpenProp={chatOpen} setIsOpenProp={setChatOpen} />
     </div>
   );
 }
 
 export default App;
+
 

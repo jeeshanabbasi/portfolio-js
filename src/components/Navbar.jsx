@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, Bot } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 
@@ -12,7 +12,7 @@ const navLinks = [
   { name: 'Contact', to: 'contact' },
 ];
 
-export default function Navbar() {
+export default function Navbar({ onChatOpen }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -109,10 +109,40 @@ export default function Navbar() {
             >
               {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
+
+            {/* AI Chatbot Button — Desktop */}
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 }}
+              onClick={onChatOpen}
+              title="Ask AI about Jeeshan"
+              className="relative p-2 rounded-full ml-1 flex items-center justify-center transition-all"
+              style={{
+                background: 'linear-gradient(135deg, #06b6d4, #3b82f6)',
+                boxShadow: '0 0 14px rgba(6,182,212,0.35)',
+              }}
+            >
+              <Bot size={18} className="text-white" />
+              <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-white dark:border-slate-900 animate-pulse" />
+            </motion.button>
           </div>
 
           {/* Mobile/Tablet Toggle */}
-          <div className="lg:hidden flex items-center gap-3">
+          <div className="lg:hidden flex items-center gap-2">
+            {/* AI Chatbot Button — Mobile */}
+            <button
+              onClick={onChatOpen}
+              title="Ask AI"
+              className="relative p-2 rounded-full flex items-center justify-center"
+              style={{
+                background: 'linear-gradient(135deg, #06b6d4, #3b82f6)',
+                boxShadow: '0 0 12px rgba(6,182,212,0.3)',
+              }}
+            >
+              <Bot size={17} className="text-white" />
+              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-emerald-400 rounded-full border border-white dark:border-slate-900 animate-pulse" />
+            </button>
             <button
               onClick={toggleTheme}
               className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors"
