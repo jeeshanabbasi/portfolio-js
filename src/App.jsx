@@ -16,6 +16,7 @@ import ScrollProgress from './components/ScrollProgress';
 import BackgroundDesign from './components/BackgroundDesign';
 import WhatsAppButton from './components/WhatsAppButton';
 import AIChatbot from './components/AIChatbot';
+import AmbientPlayer from './components/AmbientPlayer';
 
 function App() {
   const [chatOpen, setChatOpen] = useState(false);
@@ -42,6 +43,7 @@ function App() {
       <Footer />
       <ScrollToTop />
       <WhatsAppButton />
+      <AmbientPlayer />
       <AIChatbot isOpenProp={chatOpen} setIsOpenProp={setChatOpen} />
     </div>
   );
