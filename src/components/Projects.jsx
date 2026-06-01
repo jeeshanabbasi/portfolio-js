@@ -10,7 +10,7 @@ const projects = [
     category: 'Full Stack',
     description: 'A comprehensive platform for booking services. Includes user authentication, provider management panel, cart, and checkout functionalities. Features a robust admin dashboard with dark mode UI.',
     tech: ['React', 'Tailwind CSS', 'Node.js', 'Express', 'MongoDB'],
-    liveLink: '#',
+    liveLink: 'https://service-management-system-eosin.vercel.app/',
     githubLink: 'https://github.com/jeeshanabbasi',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop'
   },
