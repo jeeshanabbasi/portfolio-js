@@ -10,7 +10,7 @@ import GithubStats from './components/GithubStats';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
-import CustomCursor from './components/CustomCursor';
+import TargetCursor from './components/TargetCursor';
 import Preloader from './components/Preloader';
 import ScrollProgress from './components/ScrollProgress';
 import BackgroundDesign from './components/BackgroundDesign';
@@ -25,7 +25,7 @@ function App() {
     <div className="relative font-sans text-slate-900 dark:text-slate-200 transition-colors duration-300 overflow-x-hidden">
       <Preloader />
       <ScrollProgress />
-      <CustomCursor />
+      <TargetCursor targetSelector=".cursor-target, button, a, input, select, textarea, .cursor-pointer, [role='button']" spinDuration={2} hideDefaultCursor={true} parallaxOn={true} hoverDuration={0.2} />
       <Navbar onChatOpen={() => setChatOpen(true)} />
       
       <main>
