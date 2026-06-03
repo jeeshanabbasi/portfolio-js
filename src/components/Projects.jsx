@@ -2,10 +2,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { ExternalLink } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
+import episyncImg from '../assets/episync.png';
 import taskManagerImg from '../assets/task-manager.png';
 import servicioImg from '../assets/servicio.png';
 
 const projects = [
+  {
+    title: 'Episync',
+    category: 'Full Stack',
+    description: 'A modern media streaming platform featuring co-watching capabilities, AI chat integration, and a comprehensive catalog. Built with a sleek, immersive dark-mode interface for the ultimate viewing experience.',
+    tech: ['React', 'Tailwind CSS', 'Node.js', 'MongoDB'],
+    liveLink: 'https://episync.vercel.app/',
+    githubLink: 'https://github.com/jeeshanabbasi',
+    image: episyncImg
+  },
   {
     title: 'Service Booking App',
     category: 'Full Stack',
@@ -115,21 +125,11 @@ export default function Projects() {
                 key={project.title}
                 className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 rounded-2xl overflow-hidden shadow-md"
               >
-                <div className={`relative aspect-video overflow-hidden ${
-                  project.title === 'Task Manager' 
-                    ? 'bg-[#f8fafc] dark:bg-slate-900' 
-                    : project.title === 'Service Booking App'
-                      ? 'bg-[#121212]'
-                      : ''
-                }`}>
+                <div className="relative overflow-hidden bg-slate-100 dark:bg-slate-900/50">
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    className={`w-full h-full ${
-                      project.title === 'Task Manager' || project.title === 'Service Booking App'
-                        ? 'object-contain p-2' 
-                        : 'object-cover'
-                    }`} 
+                    className="w-full h-auto object-cover"
                   />
                   {project.title !== 'Task Manager' && project.title !== 'Service Booking App' && (
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
@@ -182,13 +182,7 @@ export default function Projects() {
                 {/* Image */}
                 <div className="w-1/2 group relative">
                   <div className="absolute inset-0 bg-cyan-500/10 dark:bg-cyan-500/20 blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                  <div className={`relative rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 aspect-video shadow-lg ${
-                    project.title === 'Task Manager' 
-                      ? 'bg-[#f8fafc] dark:bg-slate-900' 
-                      : project.title === 'Service Booking App'
-                        ? 'bg-[#121212]'
-                        : ''
-                  }`}>
+                  <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-lg bg-slate-100 dark:bg-slate-900/50">
                     <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-all duration-500 z-20 flex items-center justify-center backdrop-blur-[2px]">
                       <a href={project.liveLink} target="_blank" rel="noreferrer" className="px-6 py-3 bg-cyan-500 text-white rounded-full font-semibold flex items-center gap-2 translate-y-8 group-hover:translate-y-0 transition-all duration-500 shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:bg-cyan-400">
                         <ExternalLink size={18} /> View Live
@@ -197,11 +191,7 @@ export default function Projects() {
                     <img 
                       src={project.image} 
                       alt={project.title} 
-                      className={`w-full h-full transition-transform duration-700 ${
-                        project.title === 'Task Manager' || project.title === 'Service Booking App'
-                          ? 'object-contain p-3 group-hover:scale-105' 
-                          : 'object-cover group-hover:scale-110'
-                      }`} 
+                      className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   </div>
                 </div>
