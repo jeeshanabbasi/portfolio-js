@@ -33,7 +33,7 @@ const knowledge = {
       type: 'Full Stack',
       tech: ['React', 'Framer Motion', 'Node.js', 'MongoDB'],
       desc: 'A productivity app with drag-and-drop task management, category filtering, progress tracking, and a glassmorphism interface.',
-      live: 'https://frontend-task-nine-lake.vercel.app/',
+      live: 'https://dipanshu-taskboard.vercel.app/',
     },
     {
       name: 'Print Point Website',
