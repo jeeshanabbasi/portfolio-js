@@ -1,3 +1,4 @@
+import { cloneElement } from 'react';
 import { Mail, Heart, ArrowUpRight, MapPin, Phone, Sparkles } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { Link } from 'react-scroll';
@@ -38,7 +39,8 @@ export default function Footer() {
       {/* Decorative top line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
 
-      <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+      {/* ── Desktop Footer ── */}
+      <div className="hidden md:block w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
         
         {/* Main Footer Content */}
         <div className="pt-12 pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8">
@@ -213,6 +215,74 @@ export default function Footer() {
           </div>
         </div>
 
+      </div>
+
+      {/* ── Mobile Footer ── */}
+      <div className="block md:hidden w-full px-4 py-6 relative z-10 text-center">
+        {/* Brand & Compact Info */}
+        <div className="mb-4">
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tighter">
+            Jeeshan<span className="text-cyan-500 dark:text-cyan-400">.</span>
+          </h2>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 max-w-[280px] mx-auto leading-relaxed">
+            Full Stack Developer crafting modern, scalable, and visually stunning web applications.
+          </p>
+        </div>
+
+        {/* Quick Links Horizontal Wrapper */}
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-4 text-xs font-semibold text-slate-600 dark:text-slate-400">
+          {quickLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.to}
+              smooth={true}
+              duration={500}
+              offset={-70}
+              className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors cursor-pointer"
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
+
+        {/* Social Icons row */}
+        <div className="flex items-center justify-center gap-3 mb-4">
+          {socialLinks.map((social) => (
+            <a
+              key={social.label}
+              href={social.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={social.label}
+              className={`p-2.5 rounded-lg bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 shadow-sm transition-all duration-300 hover:shadow-md ${social.colorClass}`}
+            >
+              {social.label === 'Instagram' ? (
+                social.icon
+              ) : (
+                cloneElement(social.icon, { size: 16 })
+              )}
+            </a>
+          ))}
+        </div>
+
+        <div className="w-full h-px bg-slate-200 dark:bg-white/5 my-4"></div>
+
+        {/* Copyright info */}
+        <div className="text-[10px] text-slate-400 dark:text-slate-500 space-y-1">
+          <p className="flex items-center justify-center gap-1.5">
+            © {currentYear} Jeeshan. Crafted with 
+            <motion.span
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Heart size={10} className="text-red-500 fill-red-500" />
+            </motion.span>
+            & ☕
+          </p>
+          <p>
+            Designed & Developed by <span className="text-cyan-600 dark:text-cyan-400 font-medium">Jeeshan</span>
+          </p>
+        </div>
       </div>
     </footer>
   );

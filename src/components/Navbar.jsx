@@ -40,12 +40,12 @@ export default function Navbar({ onChatOpen }) {
   }, []);
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-500 flex justify-center ${scrolled ? 'top-4 px-4' : 'top-0'}`}>
+    <header className={`fixed w-full z-50 transition-all duration-500 flex justify-center ${scrolled ? 'top-2 px-2 md:top-4 md:px-4' : 'top-0'}`}>
       <nav
         className={`w-full transition-all duration-500 relative ${
           scrolled
-            ? 'max-w-5xl bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.1)] border border-slate-200/50 dark:border-white/10 rounded-full py-3 px-5 lg:px-8'
-            : 'max-w-7xl bg-transparent py-5 px-4 sm:px-6 lg:px-12 border-transparent'
+            ? 'max-w-5xl bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.1)] border border-slate-200/50 dark:border-white/10 rounded-full py-2 px-4 md:py-3 md:px-5 lg:px-8'
+            : 'max-w-7xl bg-transparent py-3 px-4 md:py-5 md:px-6 lg:px-12 border-transparent'
         }`}
       >
         <div className="w-full flex justify-between items-center">
@@ -166,9 +166,9 @@ export default function Navbar({ onChatOpen }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.97 }}
               transition={{ duration: 0.2 }}
-              className={`lg:hidden absolute left-0 right-0 w-full bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-white/5 overflow-hidden shadow-xl backdrop-blur-xl ${scrolled ? 'top-full mt-4 rounded-3xl' : 'top-full mt-2 rounded-2xl'}`}
+              className={`lg:hidden absolute left-0 right-0 w-full bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-white/5 overflow-hidden shadow-xl backdrop-blur-xl ${scrolled ? 'top-full mt-2 rounded-2xl' : 'top-full mt-2 rounded-2xl'}`}
             >
-              <div className="flex flex-col px-6 py-6 space-y-1 text-center">
+              <div className="flex flex-col px-4 py-4 space-y-0.5 text-center">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
@@ -178,7 +178,7 @@ export default function Navbar({ onChatOpen }) {
                     offset={-80}
                     duration={500}
                     onClick={() => setIsOpen(false)}
-                    className={`text-lg font-semibold transition-colors cursor-pointer block py-2 rounded-xl ${
+                    className={`text-base font-semibold transition-colors cursor-pointer block py-1.5 rounded-xl ${
                       activeSection === link.to
                         ? 'text-cyan-500 bg-cyan-50 dark:bg-cyan-500/10'
                         : 'text-slate-600 dark:text-slate-300 hover:text-cyan-500 dark:hover:text-cyan-400'
@@ -190,7 +190,7 @@ export default function Navbar({ onChatOpen }) {
                 <a
                   href="#contact"
                   onClick={() => setIsOpen(false)}
-                  className="mt-3 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold text-sm hover:opacity-90 transition-all"
+                  className="mt-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold text-sm hover:opacity-90 transition-all"
                 >
                   Hire Me
                 </a>

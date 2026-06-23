@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, cloneElement } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { FolderGit2, Code2, Coffee, Star } from 'lucide-react';
 
@@ -35,7 +35,7 @@ function Counter({ value, suffix, duration = 2000 }) {
 
 export default function StatsCounter() {
   return (
-    <section className="py-10 md:py-16 relative">
+    <section className="py-5 md:py-16 relative">
       <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -50,15 +50,15 @@ export default function StatsCounter() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 rounded-2xl p-4 md:p-6 flex flex-col items-center text-center shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 rounded-xl md:rounded-2xl p-3 md:p-6 flex flex-col items-center text-center shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
             >
-              <div className={`${stat.bg} ${stat.color} p-3 rounded-xl mb-4 group-hover:scale-110 transition-transform`}>
-                {stat.icon}
+              <div className={`${stat.bg} ${stat.color} p-2 md:p-3 rounded-lg md:rounded-xl mb-2 md:mb-4 group-hover:scale-110 transition-transform`}>
+                {cloneElement(stat.icon, { className: "w-5 h-5 md:w-7 md:h-7" })}
               </div>
-              <div className={`text-3xl md:text-4xl font-bold ${stat.color} mb-1`}>
+              <div className={`text-xl md:text-4xl font-bold ${stat.color} mb-0.5 md:mb-1`}>
                 <Counter value={stat.value} suffix={stat.suffix} />
               </div>
-              <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">{stat.label}</p>
+              <p className="text-slate-500 dark:text-slate-400 text-xs md:text-sm font-medium">{stat.label}</p>
             </motion.div>
           ))}
         </motion.div>

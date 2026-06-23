@@ -11,16 +11,16 @@ export default function BackgroundDesign() {
       />
 
       {/* Top-left gradient blob */}
-      <div className="absolute -top-20 -left-20 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-cyan-400/10 dark:bg-cyan-500/8 rounded-full blur-[80px] md:blur-[120px]" />
+      <div className="absolute -top-10 -left-10 w-[150px] h-[150px] md:-top-20 md:-left-20 md:w-[500px] md:h-[500px] bg-cyan-400/10 dark:bg-cyan-500/8 rounded-full blur-[60px] md:blur-[120px]" />
 
       {/* Center-right gradient blob */}
-      <div className="absolute top-1/3 -right-10 w-[200px] h-[200px] md:w-[400px] md:h-[400px] bg-blue-500/8 dark:bg-blue-600/6 rounded-full blur-[80px] md:blur-[100px]" />
+      <div className="absolute top-1/3 -right-5 w-[120px] h-[120px] md:-right-10 md:w-[400px] md:h-[400px] bg-blue-500/8 dark:bg-blue-600/6 rounded-full blur-[60px] md:blur-[100px]" />
 
       {/* Bottom-left accent */}
-      <div className="absolute bottom-0 left-1/4 w-[200px] h-[200px] md:w-[350px] md:h-[350px] bg-violet-500/6 dark:bg-violet-600/5 rounded-full blur-[80px] md:blur-[110px]" />
+      <div className="absolute bottom-0 left-1/4 w-[120px] h-[120px] md:w-[350px] md:h-[350px] bg-violet-500/6 dark:bg-violet-600/5 rounded-full blur-[60px] md:blur-[110px]" />
 
       {/* Bottom-right soft glow */}
-      <div className="absolute -bottom-10 right-0 w-[200px] h-[200px] md:w-[450px] md:h-[450px] bg-cyan-500/5 dark:bg-cyan-400/4 rounded-full blur-[80px] md:blur-[130px]" />
+      <div className="absolute -bottom-5 right-0 w-[120px] h-[120px] md:-bottom-10 md:w-[450px] md:h-[450px] bg-cyan-500/5 dark:bg-cyan-400/4 rounded-full blur-[60px] md:blur-[130px]" />
 
       {/* Subtle top gradient fade */}
       <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-white/60 dark:from-slate-950/80 to-transparent" />

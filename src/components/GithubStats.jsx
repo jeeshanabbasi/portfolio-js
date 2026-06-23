@@ -1,3 +1,4 @@
+import { cloneElement } from 'react';
 import { GitHubCalendar } from 'react-github-calendar';
 import { useTheme } from '../context/ThemeContext';
 import { motion } from 'framer-motion';
@@ -19,7 +20,7 @@ export default function GithubStats() {
   ];
 
   return (
-    <section className="py-12 md:py-20 relative z-10">
+    <section className="py-6 md:py-20 relative z-10">
       <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-12">
 
         {/* Heading */}
@@ -44,7 +45,7 @@ export default function GithubStats() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4 mb-8 md:mb-10"
+          className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4 mb-5 md:mb-10"
         >
           {githubCards.map((card, i) => (
             <motion.div
@@ -53,13 +54,13 @@ export default function GithubStats() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 rounded-2xl p-4 flex flex-col items-center text-center shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300 group"
+              className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 rounded-xl md:rounded-2xl p-3 md:p-4 flex flex-col items-center text-center shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300 group"
             >
-              <div className={`${card.bg} ${card.color} p-2.5 rounded-xl mb-2 group-hover:scale-110 transition-transform`}>
-                {card.icon}
+              <div className={`${card.bg} ${card.color} p-2 md:p-2.5 rounded-lg md:rounded-xl mb-1.5 md:mb-2 group-hover:scale-110 transition-transform`}>
+                {cloneElement(card.icon, { className: "w-4 h-4 md:w-5 md:h-5" })}
               </div>
-              <div className={`text-2xl font-bold ${card.color}`}>{card.value}</div>
-              <p className="text-slate-500 dark:text-slate-400 text-xs font-medium mt-0.5">{card.label}</p>
+              <div className={`text-lg md:text-2xl font-bold ${card.color}`}>{card.value}</div>
+              <p className="text-slate-500 dark:text-slate-400 text-[10px] md:text-xs font-medium mt-0.5">{card.label}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -70,12 +71,12 @@ export default function GithubStats() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 rounded-2xl md:rounded-3xl p-5 md:p-8 shadow-xl overflow-x-auto"
+          className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 rounded-xl md:rounded-3xl p-4 md:p-8 shadow-xl overflow-x-auto no-scrollbar"
         >
           <p className="text-xs text-slate-400 dark:text-slate-500 mb-4 font-medium text-center">
             Contribution graph — jeeshanabbasi
           </p>
-          <div className="flex justify-center min-w-0">
+          <div className="flex justify-start md:justify-center min-w-[700px] md:min-w-0 pb-2">
             <GitHubCalendar
               username="jeeshanabbasi"
               colorScheme={theme}

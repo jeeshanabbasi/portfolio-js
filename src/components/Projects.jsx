@@ -49,6 +49,7 @@ const tabs = ['All', 'Full Stack', 'Frontend', 'Backend'];
 
 export default function Projects() {
   const [activeTab, setActiveTab] = useState('All');
+  const [showAll, setShowAll] = useState(false);
 
   const filtered = activeTab === 'All'
     ? projects
@@ -120,43 +121,53 @@ export default function Projects() {
             transition={{ duration: 0.3 }}
             className="flex flex-col gap-6 md:hidden"
           >
-            {filtered.map((project, idx) => (
+            {(showAll ? filtered : filtered.slice(0, 2)).map((project, idx) => (
               <div
                 key={project.title}
                 className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 rounded-2xl overflow-hidden shadow-md"
               >
-                <div className="relative overflow-hidden bg-slate-100 dark:bg-slate-900/50">
+                <div className="relative overflow-hidden bg-slate-100 dark:bg-slate-900/50 h-32 sm:h-40">
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    className="w-full h-auto object-cover"
+                    className="w-full h-full object-cover"
                   />
                   {project.title !== 'Task Manager' && project.title !== 'Service Booking App' && (
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
                   )}
-                  <span className="absolute top-3 right-3 text-xs font-semibold bg-cyan-500/90 text-white px-2.5 py-1 rounded-full">
+                  <span className="absolute top-2.5 right-2.5 text-[10px] font-semibold bg-cyan-500/90 text-white px-2 py-0.5 rounded-full">
                     {project.category}
                   </span>
                 </div>
-                <div className="p-5">
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{project.title}</h3>
-                  <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
+                <div className="p-4">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1">{project.title}</h3>
+                  <p className="text-slate-600 dark:text-slate-300 text-xs leading-relaxed mb-3 line-clamp-2">{project.description}</p>
+                  <div className="flex flex-wrap gap-1 mb-3">
                     {project.tech.map((tech, i) => (
-                      <span key={i} className="text-xs font-medium px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">{tech}</span>
+                      <span key={i} className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">{tech}</span>
                     ))}
                   </div>
-                  <div className="flex flex-col sm:flex-row gap-2">
-                    <a href={project.liveLink} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-full bg-cyan-500 text-white font-semibold text-sm hover:bg-cyan-600 transition-colors">
-                      <ExternalLink size={15} /> Live Demo
+                  <div className="flex gap-2">
+                    <a href={project.liveLink} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-full bg-cyan-500 text-white font-semibold text-xs hover:bg-cyan-600 transition-colors">
+                      <ExternalLink size={12} /> Live Demo
                     </a>
-                    <a href={project.githubLink} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 text-slate-700 dark:text-white font-medium text-sm hover:bg-slate-50 dark:hover:bg-white/10 transition-colors">
-                      <FaGithub size={15} /> GitHub
+                    <a href={project.githubLink} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 text-slate-700 dark:text-white font-medium text-xs hover:bg-slate-50 dark:hover:bg-white/10 transition-colors">
+                      <FaGithub size={12} /> GitHub
                     </a>
                   </div>
                 </div>
               </div>
             ))}
+
+            {/* View More button on mobile */}
+            {filtered.length > 2 && (
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="mt-2 w-full py-2.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-xs border border-slate-200 dark:border-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer"
+              >
+                {showAll ? 'Show Less Projects' : `View More Projects (${filtered.length - 2} More)`}
+              </button>
+            )}
           </motion.div>
         </AnimatePresence>
 

@@ -48,60 +48,96 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-12 md:py-20 relative">
+    <section id="contact" className="py-6 md:py-20 relative">
       <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
         
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          className="text-center mb-8 md:mb-10"
         >
           <h2 className="text-2xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
             Get In <span className="text-cyan-400">Touch</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full"></div>
-          <p className="mt-6 text-slate-600 dark:text-slate-400 max-w-lg mx-auto">
+          <p className="mt-4 md:mt-6 text-slate-600 dark:text-slate-400 max-w-lg mx-auto text-xs md:text-base">
             Have a project in mind or want to explore an opportunity? I'm currently open for new roles and exciting projects. Let's talk!
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-start">
           
           {/* Contact Info */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-4"
+            className="w-full animate-fade-in"
           >
-            <div className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 shadow-md p-5 flex items-center gap-4 hover:border-cyan-400 dark:hover:border-cyan-500/30 transition-colors rounded-2xl">
-              <div className="p-3 bg-cyan-100 dark:bg-cyan-500/10 rounded-xl text-cyan-600 dark:text-cyan-400 flex-shrink-0">
-                <Mail size={22} />
+            {/* Desktop Contact Details (3 separate cards) */}
+            <div className="hidden md:flex flex-col gap-4">
+              <div className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 shadow-md p-5 flex items-center gap-4 hover:border-cyan-400 dark:hover:border-cyan-500/30 transition-colors rounded-2xl">
+                <div className="p-3 bg-cyan-100 dark:bg-cyan-500/10 rounded-xl text-cyan-600 dark:text-cyan-400 flex-shrink-0">
+                  <Mail size={22} />
+                </div>
+                <div>
+                  <h4 className="text-base font-semibold text-slate-900 dark:text-white mb-0.5">Email Me</h4>
+                  <a href="mailto:jeeshanabbasi055@gmail.com" className="text-slate-600 dark:text-slate-400 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">jeeshanabbasi055@gmail.com</a>
+                </div>
               </div>
-              <div>
-                <h4 className="text-base font-semibold text-slate-900 dark:text-white mb-0.5">Email Me</h4>
-                <a href="mailto:jeeshanabbasi055@gmail.com" className="text-slate-600 dark:text-slate-400 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">jeeshanabbasi055@gmail.com</a>
+
+              <div className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 shadow-md p-5 flex items-center gap-4 hover:border-blue-400 dark:hover:border-blue-500/30 transition-colors rounded-2xl">
+                <div className="p-3 bg-blue-100 dark:bg-blue-500/10 rounded-xl text-blue-600 dark:text-blue-400 flex-shrink-0">
+                  <Phone size={22} />
+                </div>
+                <div>
+                  <h4 className="text-base font-semibold text-slate-900 dark:text-white mb-0.5">Call Me</h4>
+                  <a href="tel:8079024831" className="text-slate-600 dark:text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">8079024831</a>
+                </div>
+              </div>
+
+              <div className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 shadow-md p-5 flex items-center gap-4 hover:border-purple-400 dark:hover:border-purple-500/30 transition-colors rounded-2xl">
+                <div className="p-3 bg-purple-100 dark:bg-purple-500/10 rounded-xl text-purple-600 dark:text-purple-400 flex-shrink-0">
+                  <MapPin size={22} />
+                </div>
+                <div>
+                  <h4 className="text-base font-semibold text-slate-900 dark:text-white mb-0.5">Location</h4>
+                  <p className="text-slate-600 dark:text-slate-400">Bikaner, Rajasthan</p>
+                </div>
               </div>
             </div>
 
-            <div className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 shadow-md p-5 flex items-center gap-4 hover:border-blue-400 dark:hover:border-blue-500/30 transition-colors rounded-2xl">
-              <div className="p-3 bg-blue-100 dark:bg-blue-500/10 rounded-xl text-blue-600 dark:text-blue-400 flex-shrink-0">
-                <Phone size={22} />
+            {/* Mobile Contact Details (merged unified single card) */}
+            <div className="block md:hidden bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 shadow-md p-4 rounded-xl space-y-3">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-cyan-100 dark:bg-cyan-500/10 rounded-lg text-cyan-600 dark:text-cyan-400 flex-shrink-0">
+                  <Mail size={16} />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h4 className="text-xs font-bold text-slate-900 dark:text-white">Email Me</h4>
+                  <a href="mailto:jeeshanabbasi055@gmail.com" className="text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors truncate block">jeeshanabbasi055@gmail.com</a>
+                </div>
               </div>
-              <div>
-                <h4 className="text-base font-semibold text-slate-900 dark:text-white mb-0.5">Call Me</h4>
-                <a href="tel:8079024831" className="text-slate-600 dark:text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">8079024831</a>
-              </div>
-            </div>
 
-            <div className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 shadow-md p-5 flex items-center gap-4 hover:border-purple-400 dark:hover:border-purple-500/30 transition-colors rounded-2xl">
-              <div className="p-3 bg-purple-100 dark:bg-purple-500/10 rounded-xl text-purple-600 dark:text-purple-400 flex-shrink-0">
-                <MapPin size={22} />
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-blue-100 dark:bg-blue-500/10 rounded-lg text-blue-600 dark:text-blue-400 flex-shrink-0">
+                  <Phone size={16} />
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-xs font-bold text-slate-900 dark:text-white">Call Me</h4>
+                  <a href="tel:8079024831" className="text-xs text-slate-600 dark:text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">8079024831</a>
+                </div>
               </div>
-              <div>
-                <h4 className="text-base font-semibold text-slate-900 dark:text-white mb-0.5">Location</h4>
-                <p className="text-slate-600 dark:text-slate-400">Bikaner, Rajasthan</p>
+
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-purple-100 dark:bg-purple-500/10 rounded-lg text-purple-600 dark:text-purple-400 flex-shrink-0">
+                  <MapPin size={16} />
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-xs font-bold text-slate-900 dark:text-white">Location</h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-400">Bikaner, Rajasthan</p>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -112,53 +148,53 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <form onSubmit={handleSubmit} className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 shadow-xl rounded-2xl p-6 space-y-4">
+            <form onSubmit={handleSubmit} className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 shadow-xl rounded-xl md:rounded-2xl p-4 md:p-6 space-y-3 md:space-y-4">
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-slate-700 dark:text-slate-300">Your Name</label>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+                <div className="space-y-1 md:space-y-2">
+                  <label htmlFor="name" className="text-xs md:text-sm font-medium text-slate-700 dark:text-slate-300">Your Name</label>
                   <input 
                     type="text" 
                     name="name"
                     id="name" 
                     required
-                    className="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
+                    className="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 rounded-lg md:rounded-xl px-3 py-2 md:px-4 md:py-3 text-xs md:text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
                     placeholder="John Doe"
                   />
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-slate-700 dark:text-slate-300">Your Email</label>
+                <div className="space-y-1 md:space-y-2">
+                  <label htmlFor="email" className="text-xs md:text-sm font-medium text-slate-700 dark:text-slate-300">Your Email</label>
                   <input 
                     type="email" 
                     name="email"
                     id="email" 
                     required
-                    className="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
+                    className="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 rounded-lg md:rounded-xl px-3 py-2 md:px-4 md:py-3 text-xs md:text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
                     placeholder="john@example.com"
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium text-slate-700 dark:text-slate-300">Subject</label>
+              <div className="space-y-1 md:space-y-2">
+                <label htmlFor="subject" className="text-xs md:text-sm font-medium text-slate-700 dark:text-slate-300">Subject</label>
                 <input 
                   type="text" 
                   name="subject"
                   id="subject" 
                   required
-                  className="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
+                  className="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 rounded-lg md:rounded-xl px-3 py-2 md:px-4 md:py-3 text-xs md:text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
                   placeholder="How can I help you?"
                 />
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-slate-700 dark:text-slate-300">Message</label>
+              <div className="space-y-1 md:space-y-2">
+                <label htmlFor="message" className="text-xs md:text-sm font-medium text-slate-700 dark:text-slate-300">Message</label>
                 <textarea 
                   name="message"
                   id="message" 
-                  rows="5" 
+                  rows="4" 
                   required
-                  className="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500 resize-none"
+                  className="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 rounded-lg md:rounded-xl px-3 py-2 md:px-4 md:py-3 text-xs md:text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500 resize-none"
                   placeholder="Write your message here..."
                 ></textarea>
               </div>
@@ -166,7 +202,7 @@ export default function Contact() {
               <button 
                 type="submit" 
                 disabled={isSubmitting || isSuccess}
-                className={`w-full font-semibold py-4 rounded-xl flex items-center justify-center gap-2 transition-all disabled:opacity-90 disabled:cursor-not-allowed ${
+                className={`w-full font-semibold py-2.5 md:py-4 rounded-lg md:rounded-xl flex items-center justify-center gap-2 transition-all disabled:opacity-90 disabled:cursor-not-allowed text-xs md:text-sm ${
                   isSuccess 
                     ? 'bg-gradient-to-r from-emerald-400 to-green-500 text-white shadow-[0_0_20px_rgba(16,185,129,0.4)]' 
                     : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:shadow-[0_0_20px_rgba(6,182,212,0.4)]'
@@ -175,9 +211,9 @@ export default function Contact() {
                 {isSubmitting ? (
                   <span className="animate-pulse">Sending...</span>
                 ) : isSuccess ? (
-                  <>Message Sent! <CheckCircle2 size={18} /></>
+                  <>Message Sent! <CheckCircle2 size={16} className="md:w-[18px] md:h-[18px]" /></>
                 ) : (
-                  <>Send Message <Send size={18} /></>
+                  <>Send Message <Send size={16} className="md:w-[18px] md:h-[18px]" /></>
                 )}
               </button>
 
