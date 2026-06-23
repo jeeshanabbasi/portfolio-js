@@ -110,9 +110,9 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex justify-center relative order-1 md:order-2"
+              className="flex justify-center relative order-1 md:order-2 py-4"
             >
-              <div className="w-32 h-32 sm:w-48 sm:h-48 md:w-72 md:h-72 lg:w-80 lg:h-80 relative">
+              <div className="w-52 h-52 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-[360px] lg:h-[360px] relative">
                 {/* Rotating dashed ring */}
                 <motion.div
                   animate={{ rotate: 360 }}
@@ -120,8 +120,8 @@ export default function Hero() {
                   className="absolute inset-0 border-2 border-dashed border-cyan-500/30 rounded-full"
                 />
 
-                {/* Profile image */}
-                <div className="absolute inset-2 md:inset-4 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 border-2 md:border-4 border-white dark:border-slate-800 shadow-xl z-10">
+                {/* Profile image with subtle gradient border */}
+                <div className="absolute inset-2.5 md:inset-4 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 border-2 md:border-4 border-white dark:border-slate-800 shadow-xl z-10">
                   <img
                     src="/profile.jpg"
                     alt="Jeeshan"
@@ -133,29 +133,29 @@ export default function Hero() {
                   />
                 </div>
 
-                {/* Floating badges - hidden on mobile */}
+                {/* Floating badges - visible and scaled on mobile */}
                 <motion.div
-                  animate={{ y: [0, -10, 0] }}
+                  animate={{ y: [0, -8, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className="hidden md:flex absolute top-0 -left-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl p-3 rounded-full text-[#61DAFB] items-center justify-center z-20"
+                  className="absolute top-2 -left-1 md:top-0 md:-left-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl p-2 md:p-3 rounded-full text-[#61DAFB] flex items-center justify-center z-20"
                 >
-                  <FaReact className="w-7 h-7" />
+                  <FaReact className="w-5 h-5 md:w-7 md:h-7" />
                 </motion.div>
 
                 <motion.div
-                  animate={{ y: [0, 10, 0] }}
+                  animate={{ y: [0, 8, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="hidden md:flex absolute bottom-6 -left-7 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl p-3 rounded-full text-[#339933] items-center justify-center z-20"
+                  className="absolute bottom-4 -left-2 md:bottom-6 md:-left-7 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl p-2 md:p-3 rounded-full text-[#339933] flex items-center justify-center z-20"
                 >
-                  <FaNodeJs className="w-7 h-7" />
+                  <FaNodeJs className="w-5 h-5 md:w-7 md:h-7" />
                 </motion.div>
 
                 <motion.div
-                  animate={{ y: [0, -15, 0] }}
+                  animate={{ y: [0, -12, 0] }}
                   transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  className="hidden md:flex absolute top-14 -right-7 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl p-3 rounded-full text-[#06B6D4] items-center justify-center z-20"
+                  className="absolute top-12 -right-1 md:top-14 md:-right-7 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl p-2 md:p-3 rounded-full text-[#06B6D4] flex items-center justify-center z-20"
                 >
-                  <SiTailwindcss className="w-7 h-7" />
+                  <SiTailwindcss className="w-5 h-5 md:w-7 md:h-7" />
                 </motion.div>
               </div>
             </motion.div>
