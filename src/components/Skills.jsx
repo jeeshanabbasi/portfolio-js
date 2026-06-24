@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   FaReact, FaNodeJs, FaGithub, FaHtml5, FaDatabase, FaCss3Alt
@@ -63,8 +62,6 @@ const skills = [
 ];
 
 export default function Skills() {
-  const [activeTab, setActiveTab] = useState(0);
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -95,98 +92,23 @@ export default function Skills() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-8 md:mb-16"
+          className="text-center mb-16"
         >
           <h2 className="text-2xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
             Technical <span className="text-cyan-400">Skills</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full"></div>
-          <p className="mt-4 md:mt-6 text-slate-600 dark:text-slate-400 max-w-lg mx-auto text-xs md:text-sm">
+          <p className="mt-6 text-slate-600 dark:text-slate-400 max-w-lg mx-auto">
             Technologies & tools I use to bring ideas to life
           </p>
         </motion.div>
 
-        {/* Mobile Horizontal Tabs Selector */}
-        <div className="flex md:hidden overflow-x-auto no-scrollbar gap-2 pb-3 mb-6">
-          {skills.map((skillGroup, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveTab(idx)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all border ${
-                activeTab === idx
-                  ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-transparent shadow-md'
-                  : 'bg-white/80 dark:bg-slate-800/50 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700/50'
-              }`}
-            >
-              {skillGroup.icon}
-              {skillGroup.category}
-            </button>
-          ))}
-        </div>
-
-        {/* Mobile View: Render only active tab */}
-        <div className="block md:hidden">
-          {skills.map((skillGroup, idx) => {
-            if (idx !== activeTab) return null;
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                className="relative bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 rounded-xl shadow-lg p-5 overflow-hidden"
-              >
-                {/* Subtle background pattern */}
-                <div className="absolute top-0 right-0 w-32 h-32 opacity-[0.03] dark:opacity-[0.05] pointer-events-none">
-                  <div className={`w-full h-full bg-gradient-to-br ${skillGroup.gradient} rounded-full blur-2xl`}></div>
-                </div>
-
-                {/* Category header */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`p-2 rounded-lg bg-gradient-to-br ${skillGroup.gradient} text-white shadow-md`}>
-                    {skillGroup.icon}
-                  </div>
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white">
-                    {skillGroup.category}
-                  </h3>
-                </div>
-
-                <div className={`w-full h-px bg-gradient-to-r ${skillGroup.gradient} opacity-20 mb-4`}></div>
-
-                {/* Skill items: 2 columns on mobile */}
-                <div className="grid grid-cols-2 gap-2">
-                  {skillGroup.items.map((skill, i) => (
-                    <motion.div
-                      key={i}
-                      custom={i}
-                      variants={skillItemVariants}
-                      whileHover={{ x: 2, scale: 1.01 }}
-                      className="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50/80 dark:bg-slate-900/30 border border-slate-100 dark:border-white/5 hover:border-slate-300 dark:hover:border-white/10 hover:bg-white dark:hover:bg-slate-800/50 transition-all duration-300 group/item"
-                    >
-                      <div 
-                        className="flex-shrink-0 transition-transform duration-300 group-hover/item:scale-105"
-                        style={{ color: skill.color }}
-                      >
-                        {skill.icon}
-                      </div>
-                      <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 group-hover/item:text-slate-900 dark:group-hover/item:text-white transition-colors">
-                        {skill.name}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Desktop View: Keep original grid layout */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
         >
           {skills.map((skillGroup, idx) => (
             <motion.div
