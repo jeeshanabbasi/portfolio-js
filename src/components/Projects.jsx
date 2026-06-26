@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
-import { ExternalLink } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import episyncImg from '../assets/episync.png';
 import taskManagerImg from '../assets/task-manager.png';
@@ -50,6 +50,17 @@ const tabs = ['All', 'Full Stack', 'Frontend', 'Backend'];
 export default function Projects() {
   const [activeTab, setActiveTab] = useState('All');
   const [showAll, setShowAll] = useState(false);
+  const projectsScrollRef = useRef(null);
+
+  const scrollProjects = (direction) => {
+    if (projectsScrollRef.current) {
+      const scrollAmount = 306; // Card width 290px + gap 16px (1rem)
+      projectsScrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const filtered = activeTab === 'All'
     ? projects
@@ -111,42 +122,48 @@ export default function Projects() {
           )}
         </AnimatePresence>
 
-        {/* ── Mobile: vertical card grid ── */}
+        {/* ── Mobile: horizontal scrollable carousel ── */}
         <AnimatePresence mode="wait">
           <motion.div
+            ref={projectsScrollRef}
             key={activeTab + '-mobile'}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="flex flex-col gap-6 md:hidden"
+            className="flex flex-row overflow-x-auto gap-4 pb-6 snap-x snap-mandatory -mx-4 px-4 md:hidden no-scrollbar"
           >
-            {(showAll ? filtered : filtered.slice(0, 2)).map((project, idx) => (
+            {filtered.map((project, idx) => (
               <div
                 key={project.title}
-                className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 rounded-2xl overflow-hidden shadow-md"
+                className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 rounded-2xl overflow-hidden shadow-md flex-shrink-0 w-[290px] snap-start flex flex-col justify-between"
               >
-                <div className="relative overflow-hidden bg-slate-100 dark:bg-slate-900/50 h-32 sm:h-40">
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover"
-                  />
-                  {project.title !== 'Task Manager' && project.title !== 'Service Booking App' && (
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
-                  )}
-                  <span className="absolute top-2.5 right-2.5 text-[10px] font-semibold bg-cyan-500/90 text-white px-2 py-0.5 rounded-full">
-                    {project.category}
-                  </span>
-                </div>
-                <div className="p-4">
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1">{project.title}</h3>
-                  <p className="text-slate-600 dark:text-slate-300 text-xs leading-relaxed mb-3 line-clamp-2">{project.description}</p>
-                  <div className="flex flex-wrap gap-1 mb-3">
-                    {project.tech.map((tech, i) => (
-                      <span key={i} className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">{tech}</span>
-                    ))}
+                <div>
+                  <div className="relative overflow-hidden bg-slate-100 dark:bg-slate-900/50 h-36">
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover"
+                    />
+                    {project.title !== 'Task Manager' && project.title !== 'Service Booking App' && (
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+                    )}
+                    <span className="absolute top-2.5 right-2.5 text-[10px] font-semibold bg-cyan-500/90 text-white px-2 py-0.5 rounded-full">
+                      {project.category}
+                    </span>
                   </div>
+                  <div className="p-4">
+                    <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1">{project.title}</h3>
+                    <p className="text-slate-600 dark:text-slate-300 text-xs leading-relaxed mb-3 line-clamp-3">{project.description}</p>
+                    <div className="flex flex-wrap gap-1 mb-3">
+                      {project.tech.map((tech, i) => (
+                        <span key={i} className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">{tech}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="p-4 pt-0">
                   <div className="flex gap-2">
                     <a href={project.liveLink} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-full bg-cyan-500 text-white font-semibold text-xs hover:bg-cyan-600 transition-colors">
                       <ExternalLink size={12} /> Live Demo
@@ -158,18 +175,31 @@ export default function Projects() {
                 </div>
               </div>
             ))}
-
-            {/* View More button on mobile */}
-            {filtered.length > 2 && (
-              <button
-                onClick={() => setShowAll(!showAll)}
-                className="mt-2 w-full py-2.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-xs border border-slate-200 dark:border-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer"
-              >
-                {showAll ? 'Show Less Projects' : `View More Projects (${filtered.length - 2} More)`}
-              </button>
-            )}
           </motion.div>
         </AnimatePresence>
+
+        {/* Mobile Navigation Arrows */}
+        {filtered.length > 0 && (
+          <div className="flex md:hidden items-center justify-center gap-4 mt-2 mb-8">
+            <button 
+              onClick={() => scrollProjects('left')}
+              className="p-2.5 rounded-full bg-white/85 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 text-slate-700 dark:text-slate-300 shadow-md active:scale-95 transition-all duration-200"
+              aria-label="Scroll Left"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 tracking-wider uppercase">
+              Swipe or Use Arrows
+            </span>
+            <button 
+              onClick={() => scrollProjects('right')}
+              className="p-2.5 rounded-full bg-white/85 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 text-slate-700 dark:text-slate-300 shadow-md active:scale-95 transition-all duration-200"
+              aria-label="Scroll Right"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
+        )}
 
         {/* ── Desktop: alternating layout ── */}
         <AnimatePresence mode="wait">

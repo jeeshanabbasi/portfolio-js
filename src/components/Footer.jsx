@@ -199,54 +199,27 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-slate-200 dark:border-white/5 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-slate-500 dark:text-slate-500 text-sm flex items-center gap-1.5">
-              © {currentYear} Jeeshan. Crafted with
-              <motion.span
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <Heart size={14} className="text-red-500 fill-red-500" />
-              </motion.span>
-              & lots of ☕
+            <p className="text-slate-500 dark:text-slate-400 text-sm tracking-wide">
+              © {currentYear} Jeeshan Abbasi. All rights reserved.
             </p>
             <p className="text-slate-400 dark:text-slate-600 text-xs">
-              Designed & Developed by <span className="text-cyan-600 dark:text-cyan-400 font-medium">Jeeshan</span>
+              Designed & Developed by <span className="text-cyan-600 dark:text-cyan-400 font-semibold">Jeeshan</span>
             </p>
           </div>
         </div>
-
       </div>
 
       {/* ── Mobile Footer ── */}
-      <div className="block md:hidden w-full px-4 py-6 relative z-10 text-center">
-        {/* Brand & Compact Info */}
-        <div className="mb-4">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tighter">
+      <div className="block md:hidden w-full px-6 py-8 relative z-10 text-center">
+        {/* Brand Logo */}
+        <div className="mb-3">
+          <h2 className="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Jeeshan<span className="text-cyan-500 dark:text-cyan-400">.</span>
           </h2>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 max-w-[280px] mx-auto leading-relaxed">
-            Full Stack Developer crafting modern, scalable, and visually stunning web applications.
-          </p>
-        </div>
-
-        {/* Quick Links Horizontal Wrapper */}
-        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-4 text-xs font-semibold text-slate-600 dark:text-slate-400">
-          {quickLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.to}
-              smooth={true}
-              duration={500}
-              offset={-70}
-              className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors cursor-pointer"
-            >
-              {link.name}
-            </Link>
-          ))}
         </div>
 
         {/* Social Icons row */}
-        <div className="flex items-center justify-center gap-3 mb-4">
+        <div className="flex items-center justify-center gap-4 mb-6">
           {socialLinks.map((social) => (
             <a
               key={social.label}
@@ -254,7 +227,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
               aria-label={social.label}
-              className={`p-2.5 rounded-lg bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 shadow-sm transition-all duration-300 hover:shadow-md ${social.colorClass}`}
+              className={`p-2.5 rounded-full bg-white dark:bg-slate-900/40 border border-slate-200/60 dark:border-white/5 shadow-sm transition-all duration-300 ${social.colorClass}`}
             >
               {social.label === 'Instagram' ? (
                 social.icon
@@ -265,22 +238,14 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="w-full h-px bg-slate-200 dark:bg-white/5 my-4"></div>
+        {/* Compact Divider */}
+        <div className="w-12 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mb-6 rounded-full"></div>
 
         {/* Copyright info */}
-        <div className="text-[10px] text-slate-400 dark:text-slate-500 space-y-1">
-          <p className="flex items-center justify-center gap-1.5">
-            © {currentYear} Jeeshan. Crafted with 
-            <motion.span
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <Heart size={10} className="text-red-500 fill-red-500" />
-            </motion.span>
-            & ☕
-          </p>
-          <p>
-            Designed & Developed by <span className="text-cyan-600 dark:text-cyan-400 font-medium">Jeeshan</span>
+        <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium tracking-wider uppercase space-y-1.5">
+          <p>© {currentYear} Jeeshan Abbasi. All rights reserved.</p>
+          <p className="text-[9px] text-slate-400 dark:text-slate-500 normal-case">
+            Designed & Developed by <span className="text-cyan-500 dark:text-cyan-400 font-semibold">Jeeshan</span>
           </p>
         </div>
       </div>

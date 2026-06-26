@@ -33,6 +33,24 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+  .calendar-scrollbar::-webkit-scrollbar {
+    height: 5px;
+  }
+  .calendar-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .calendar-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(6, 182, 212, 0.25);
+    border-radius: 99px;
+  }
+  .calendar-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(6, 182, 212, 0.45);
+  }
+  .calendar-scrollbar {
+    -ms-overflow-style: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(6, 182, 212, 0.25) transparent;
+  }
   .glass {
     @apply bg-slate-900/50 backdrop-blur-md border border-white/5;
   }

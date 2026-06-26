@@ -1,4 +1,4 @@
-import { cloneElement } from 'react';
+import { cloneElement, useState } from 'react';
 import { GitHubCalendar } from 'react-github-calendar';
 import { useTheme } from '../context/ThemeContext';
 import { motion } from 'framer-motion';
@@ -6,6 +6,14 @@ import { GitFork, Star, GitCommitHorizontal, Users } from 'lucide-react';
 
 export default function GithubStats() {
   const { theme } = useTheme();
+  const [showLeftFade, setShowLeftFade] = useState(false);
+  const [showRightFade, setShowRightFade] = useState(true);
+
+  const handleScroll = (e) => {
+    const { scrollLeft, scrollWidth, clientWidth } = e.target;
+    setShowLeftFade(scrollLeft > 10);
+    setShowRightFade(scrollLeft < scrollWidth - clientWidth - 10);
+  };
 
   const customTheme = {
     light: ['#f1f5f9', '#cffafe', '#67e8f9', '#06b6d4', '#0891b2'],
@@ -71,20 +79,36 @@ export default function GithubStats() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 rounded-xl md:rounded-3xl p-4 md:p-8 shadow-xl overflow-x-auto no-scrollbar"
+          className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200 dark:border-slate-700/50 rounded-xl md:rounded-3xl p-4 md:p-8 shadow-xl overflow-hidden"
         >
-          <p className="text-xs text-slate-400 dark:text-slate-500 mb-4 font-medium text-center">
-            Contribution graph — jeeshanabbasi
+          <p className="text-xs text-slate-400 dark:text-slate-500 mb-4 font-medium text-center flex items-center justify-center gap-1.5 flex-wrap">
+            <span>Contribution graph — jeeshanabbasi</span>
+            <span className="text-[10px] text-cyan-500 px-1.5 py-0.5 rounded-full bg-cyan-500/10 font-bold tracking-wider uppercase animate-pulse">
+              Swipe ↔
+            </span>
           </p>
-          <div className="flex justify-start md:justify-center min-w-[700px] md:min-w-0 pb-2">
-            <GitHubCalendar
-              username="jeeshanabbasi"
-              colorScheme={theme}
-              theme={customTheme}
-              fontSize={12}
-              blockSize={11}
-              blockMargin={4}
-            />
+          <div className="relative">
+            {/* Left Fade Overlay */}
+            <div className={`absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white dark:from-slate-800 to-transparent pointer-events-none transition-opacity duration-300 z-10 ${showLeftFade ? 'opacity-100' : 'opacity-0'}`} />
+            
+            {/* Right Fade Overlay */}
+            <div className={`absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white dark:from-slate-800 to-transparent pointer-events-none transition-opacity duration-300 z-10 ${showRightFade ? 'opacity-100' : 'opacity-0'}`} />
+
+            <div 
+              onScroll={handleScroll}
+              className="overflow-x-auto calendar-scrollbar pb-2"
+            >
+              <div className="flex justify-start md:justify-center min-w-[700px] md:min-w-0 pb-2">
+                <GitHubCalendar
+                  username="jeeshanabbasi"
+                  colorScheme={theme}
+                  theme={customTheme}
+                  fontSize={12}
+                  blockSize={11}
+                  blockMargin={4}
+                />
+              </div>
+            </div>
           </div>
         </motion.div>
 

@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { 
   FaReact, FaNodeJs, FaGithub, FaHtml5, FaDatabase, FaCss3Alt
@@ -7,7 +8,7 @@ import {
   SiJsonwebtokens, SiMongodb, SiMysql, SiMongoose,
   SiPostman, SiVite, SiNestjs
 } from 'react-icons/si';
-import { Layout, Code2, Server, Database, Wrench } from 'lucide-react';
+import { Layout, Code2, Server, Database, Wrench, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const skills = [
   {
@@ -62,6 +63,18 @@ const skills = [
 ];
 
 export default function Skills() {
+  const scrollRef = useRef(null);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = 306; // Card width 290px + gap 16px (1rem)
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -104,17 +117,18 @@ export default function Skills() {
         </motion.div>
 
         <motion.div 
+          ref={scrollRef}
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+          className="flex flex-row overflow-x-auto gap-4 pb-6 snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-4 md:gap-6 sm:pb-0 sm:overflow-visible no-scrollbar"
         >
           {skills.map((skillGroup, idx) => (
             <motion.div
               key={idx}
               variants={cardVariants}
-              className="group relative"
+              className="group relative flex-shrink-0 w-[290px] sm:w-auto snap-start"
             >
               {/* Glow effect on hover */}
               <div className={`absolute -inset-0.5 bg-gradient-to-r ${skillGroup.gradient} rounded-2xl opacity-0 group-hover:opacity-20 blur-lg transition-all duration-500`}></div>
@@ -166,6 +180,27 @@ export default function Skills() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Mobile Navigation Arrows */}
+        <div className="flex sm:hidden items-center justify-center gap-4 mt-2">
+          <button 
+            onClick={() => scroll('left')}
+            className="p-2.5 rounded-full bg-white/85 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 text-slate-700 dark:text-slate-300 shadow-md active:scale-95 transition-all duration-200"
+            aria-label="Scroll Left"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 tracking-wider uppercase">
+            Swipe or Use Arrows
+          </span>
+          <button 
+            onClick={() => scroll('right')}
+            className="p-2.5 rounded-full bg-white/85 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 text-slate-700 dark:text-slate-300 shadow-md active:scale-95 transition-all duration-200"
+            aria-label="Scroll Right"
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
 
       </div>
     </section>
