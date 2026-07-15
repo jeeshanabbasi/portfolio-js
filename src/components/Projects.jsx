@@ -5,6 +5,7 @@ import { FaGithub } from 'react-icons/fa';
 import episyncImg from '../assets/episync.png';
 import taskManagerImg from '../assets/task-manager.png';
 import servicioImg from '../assets/servicio.png';
+import printpointImg from '../assets/printpoint.png';
 
 const projects = [
   {
@@ -39,9 +40,9 @@ const projects = [
     category: 'Frontend',
     description: 'An elegant e-commerce front-end for a printing business. Showcases rotating hero banners, product catalogs, and smooth scroll animations. Fully responsive for all devices.',
     tech: ['React', 'Tailwind CSS', 'Vite'],
-    liveLink: '#',
+    liveLink: 'https://printpoint-seven.vercel.app/',
     githubLink: 'https://github.com/jeeshanabbasi',
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop'
+    image: printpointImg
   }
 ];
 
